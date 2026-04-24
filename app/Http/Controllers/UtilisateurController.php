@@ -19,7 +19,7 @@ class UtilisateurController extends Controller
             return response()->json(['error' => 'Failed to retrieve user', 'message' => $e->getMessage()], 500);
         }
     }
-        
+    
 
     /**
      * Store a newly created resource in storage.
@@ -48,7 +48,7 @@ class UtilisateurController extends Controller
                 'role_user' => $request->role_user,
                 'etat_user' => $request->etat_user
             ]);
-            return response()->json($utilisateur, 201);     
+            return response()->json($utilisateur, 201);
         } catch (\Exception $e){
             return response()->json(['error' => 'Failed to retrieve user', 'message' => $e->getMessage()], 500);
         }
@@ -64,7 +64,7 @@ class UtilisateurController extends Controller
             return response()->json($utilisateur,200);
         } catch (\Exception $e){
             return response()->json(['error' => 'Failed to retrieve user', 'message' => $e->getMessage()], 500);
-        }        
+        }
     }
 
     /**

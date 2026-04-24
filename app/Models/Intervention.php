@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Intervention extends Model
 {
+    use hasFactory;
     protected $table = "intervention";
     protected $primaryKey = "code_int";
     public $incrementing = true;

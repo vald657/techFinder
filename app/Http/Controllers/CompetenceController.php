@@ -70,7 +70,7 @@ class CompetenceController extends Controller
         try{
             $competence = Competence::findOrFail($code_comp);
             $competence->update(([
-                'label_comp' => $request->label_comp, 
+                'label_comp' => $request->label_comp,
                 'description_comp' => $request->description_comp
             ]));
             return response()->json($competence, 200);

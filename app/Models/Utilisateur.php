@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Utilisateur extends Model
 {
+    use hasFactory;
     protected $table = "utilisateur";
     protected $primaryKey = "code_user";
     public $incrementing = false;

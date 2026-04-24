@@ -2,24 +2,41 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Utilisateur;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Désactiver les contraintes FK pour pouvoir tronquer
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('intervention')->truncate();
+        DB::table('user_competence')->truncate();
+        DB::table('utilisateur')->truncate();
+        DB::table('competences')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Compte admin garanti
+        Utilisateur::create([
+            'nom_user'      => 'Admin',
+            'prenom_user'   => 'Super',
+            'login_user'    => 'admin',
+            'password_user' => Hash::make('password'),
+            'tel_user'      => '0600000000',
+            'sexe_user'     => 'M',
+            'role_user'     => 'admin',
+            'etat_user'     => 'actif',
+        ]);
+
+        // Données de base — ordre important (FK)
+        $this->call([
+            CompetenceSeeder::class,     // 100 compétences
+            UtilisateurSeeder::class,    // 50 utilisateurs (clients + techniciens)
+            UserCompetenceSeeder::class, // associations utilisateur–compétence
+            InterventionSeeder::class,   // 80 interventions
         ]);
     }
 }
