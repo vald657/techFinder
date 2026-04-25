@@ -32,15 +32,21 @@
     </div>
 
     <div class="flex gap-2">
-        <button type="submit"
-                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
-            Filtrer
-        </button>
+        <div>
+            <label class="block text-xs mb-1 invisible">_</label>
+            <button type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                Filtrer
+            </button>
+        </div>
         @if(request('search') || request('sort'))
-            <a href="{{ route('web.user-competences.index') }}"
-               class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                Réinitialiser
-            </a>
+            <div>
+                <label class="block text-xs mb-1 invisible">_</label>
+                <a href="{{ route('web.user-competences.index') }}"
+                   class="inline-block bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                    Réinitialiser
+                </a>
+            </div>
         @endif
     </div>
 </form>
